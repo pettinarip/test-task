@@ -1,19 +1,32 @@
-import React, { useReducer } from 'react';
-import AppContext from './AppContext';
-import AppReducer from './AppReducer';
-import Actions from '../contextActions';
-import { Transaction } from '../../services/TransactionsService';
+import { ReactNode, useEffect, useReducer } from "react";
+import AppContext from "./AppContext";
+import AppReducer from "./AppReducer";
+import Actions from "../contextActions";
+import {
+  Transaction,
+  TransactionsService,
+} from "../../services/TransactionsService";
 
-export interface IAppState {
-  transactions: Array<Transaction>;
+interface IProps {
+  initAppState: IAppState;
+  children: ReactNode;
 }
 
-export const initAppState: IAppState = {
-  transactions: [],
-};
+export interface IAppState {
+  currentAccount: string;
+  accountBalance: number;
+  transactions: Array<Transaction>;
+  ethPrice: number;
+}
 
-const AppState = (props: any) => {
-  const [state, dispatch] = useReducer(AppReducer, initAppState);
+const transactionService = new TransactionsService();
+
+const AppState = (props: IProps) => {
+  const [state, dispatch] = useReducer(AppReducer, props.initAppState);
+
+  useEffect(() => {
+    transactionService.init({ transactions: props.initAppState.transactions });
+  }, [props.initAppState]);
 
   // Set app state
   const setState = (newState: IAppState) => {
@@ -22,11 +35,16 @@ const AppState = (props: any) => {
       payload: newState,
     });
   };
-  
-  // TODO: Complete the addTransaction method
-  const addTransaction = (transaction: Transaction) => {
 
-  }
+  // TODO: Complete the addTransaction method
+  const addTransaction = async (transaction: Transaction) => {
+    const balance = state.accountBalance - transaction.value;
+    setState({
+      ...state,
+      accountBalance: balance,
+      transactions: [transaction, ...state.transactions],
+    });
+  };
 
   return (
     <AppContext.Provider
@@ -34,6 +52,7 @@ const AppState = (props: any) => {
         state,
         setState,
         addTransaction,
+        transactionService,
       }}
     >
       {props.children}

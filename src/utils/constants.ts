@@ -1,4 +1,19 @@
-const defaults = {
+interface IConstantsTransaction {
+  date: string;
+  amount: string;
+  recipient: string;
+}
+
+interface IConstants {
+  publicAddress: string;
+  accountBalance: number;
+  ethPrice: number;
+  pastTransactions: {
+    [k: string]: IConstantsTransaction
+  }
+}
+
+const defaults: IConstants = {
   publicAddress: '0xb701FdCc9Db05d5AD0d7B6aAbb42DBf09ec28Ad0',
   accountBalance: 3.405,
   ethPrice: 1700,
