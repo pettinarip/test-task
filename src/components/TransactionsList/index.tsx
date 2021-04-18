@@ -46,7 +46,7 @@ function TransactionsList() {
             </Center>
             <Box flex="1">
               <Text>{isIncome ? "Received" : "Sent"} Ether</Text>
-              <Text fontSize="sm" color="gray">
+              <Text fontSize="sm" color="gray" as="time">
                 {formatDate(transaction.date)}
               </Text>
             </Box>

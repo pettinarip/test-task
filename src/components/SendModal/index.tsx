@@ -29,7 +29,7 @@ function SendModal(props: IProps) {
       <IconButton
         isRound
         colorScheme="blue"
-        aria-label="Search database"
+        aria-label="Send ether"
         icon={<ArrowUpIcon />}
         onClick={onOpen}
         {...props}

@@ -15,7 +15,7 @@ function Home() {
   return (
     <Container maxW="xl">
       <VStack align="stretch" spacing={6}>
-        <Flex>
+        <Flex as="header">
           <Center mr={3}>
             <CircleIcon boxSize={12} />
           </Center>
@@ -27,6 +27,7 @@ function Home() {
           </Box>
         </Flex>
         <Flex
+          as="main"
           direction="column"
           align="center"
           background="#eaf3fc"
