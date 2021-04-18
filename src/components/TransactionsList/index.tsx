@@ -12,6 +12,7 @@ import { Skeleton } from "@chakra-ui/skeleton";
 import { useContext } from "react";
 import AppContext from "../../context/background/AppContext";
 import useGetTransactions from "../../hooks/useGetTransactions";
+import { formatDate } from "../../utils/date";
 import { formatCurrency, formatNumber } from "../../utils/number";
 
 function TransactionsList() {
@@ -46,7 +47,7 @@ function TransactionsList() {
             <Box flex="1">
               <Text>{isIncome ? "Received" : "Sent"} Ether</Text>
               <Text fontSize="sm" color="gray">
-                {transaction.date}
+                {formatDate(transaction.date)}
               </Text>
             </Box>
             <Box>

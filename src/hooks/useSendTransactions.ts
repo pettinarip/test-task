@@ -14,7 +14,7 @@ function useSendTransactions() {
       value,
       to,
       from: state.currentAccount,
-      date: formatDate(new Date()),
+      date: new Date(),
     }
     await transactionService.addTransaction(newTransaction);
     addTransaction(newTransaction)

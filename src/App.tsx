@@ -15,7 +15,7 @@ function getInitialTransactions(): Array<Transaction> {
         to: transaction.recipient,
         from: constants.publicAddress,
         value: parseFloat(transaction.amount),
-        date: transaction.date,
+        date: new Date(transaction.date),
       };
     }
   );

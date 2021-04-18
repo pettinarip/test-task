@@ -9,7 +9,7 @@ export interface Transaction {
   to: string;
   from: string;
   value: number;
-  date: string;
+  date: Date;
 }
 
 export interface TransactionsServiceState {
