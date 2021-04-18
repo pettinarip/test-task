@@ -18,6 +18,7 @@ import { useContext } from "react";
 import AppContext from "../../../context/background/AppContext";
 import useSendTransactions from "../../../hooks/useSendTransactions";
 import { Transaction } from "../../../services/TransactionsService";
+import { isAddress } from "../../../utils/address";
 import { formatNumber } from "../../../utils/number";
 
 interface IProps {
@@ -46,6 +47,10 @@ function FormStep({ onNext, onCancel }: IProps) {
   function validateTo(to: string) {
     if (!to) {
       return "Required";
+    }
+
+    if (!isAddress(to)) {
+      return "Incorrect address";
     }
   }
 
