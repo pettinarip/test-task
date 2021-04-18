@@ -50,7 +50,7 @@ function TransactionsList() {
                 {formatDate(transaction.date)}
               </Text>
             </Box>
-            <Box>
+            <Box textAlign="right">
               <Text>
                 {formatNumber(transaction.value * (isIncome ? 1 : -1))} ETH
               </Text>

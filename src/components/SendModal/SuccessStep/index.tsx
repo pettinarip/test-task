@@ -4,6 +4,7 @@ import { Image } from "@chakra-ui/image";
 import { Center, Link, Text, VStack } from "@chakra-ui/layout";
 import { ModalBody, ModalFooter } from "@chakra-ui/modal";
 import { Transaction } from "../../../services/TransactionsService";
+import success from "../../../assets/success.png";
 
 interface IProps {
   transaction: Transaction;
@@ -17,10 +18,10 @@ function SuccessStep({ transaction, onDone }: IProps) {
         <Center h="100%">
           <VStack w="150px">
             <Image
-              src="success.png"
+              src={success}
               fallbackSrc="https://via.placeholder.com/150"
             />
-            <Text fontSize="xl" fontWeight="bold">
+            <Text fontSize="3xl" fontWeight="bold">
               Success.
             </Text>
             <Text fontSize="sm" color="gray" align="center">
