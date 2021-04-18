@@ -12,7 +12,7 @@ import { Skeleton } from "@chakra-ui/skeleton";
 import { useContext } from "react";
 import AppContext from "../../context/background/AppContext";
 import useGetTransactions from "../../hooks/useGetTransactions";
-import { formatCurrency } from "../../utils/number";
+import { formatCurrency, formatNumber } from "../../utils/number";
 
 function TransactionsList() {
   const {
@@ -50,7 +50,9 @@ function TransactionsList() {
               </Text>
             </Box>
             <Box>
-              <Text>{transaction.value * (isIncome ? 1 : -1)} ETH</Text>
+              <Text>
+                {formatNumber(transaction.value * (isIncome ? 1 : -1))} ETH
+              </Text>
               <Text fontSize="sm" color="gray">
                 {formatCurrency(
                   transaction.value * ethPrice * (isIncome ? 1 : -1)
