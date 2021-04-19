@@ -38,8 +38,8 @@ function SuccessStep({ transaction, onDone }: IProps) {
           </VStack>
         </Center>
       </ModalBody>
-      <ModalFooter>
-        <Button isFullWidth onClick={onDone}>
+      <ModalFooter borderTop="1px solid" borderColor="gray.200">
+        <Button isFullWidth onClick={onDone} variant="outline" size="lg">
           Done
         </Button>
       </ModalFooter>

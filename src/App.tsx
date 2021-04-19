@@ -3,6 +3,7 @@ import AppState, { IAppState } from "./context/background/AppState";
 import constants from "./utils/constants";
 import Home from "./pages/home";
 import { Transaction } from "./services/TransactionsService";
+import theme from "./styles/theme";
 
 // This is just mock data for the demo
 function getInitialTransactions(): Array<Transaction> {
@@ -30,7 +31,7 @@ export const initAppState: IAppState = {
 
 const App = () => {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <AppState initAppState={initAppState}>
         <Home />
       </AppState>

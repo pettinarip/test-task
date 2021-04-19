@@ -4,7 +4,7 @@ import {
   FormErrorMessage,
   FormLabel,
 } from "@chakra-ui/form-control";
-import { Input } from "@chakra-ui/input";
+import { Input } from "@chakra-ui/react";
 import { Flex, VStack } from "@chakra-ui/layout";
 import {
   ModalBody,
@@ -70,46 +70,63 @@ function FormStep({ onNext, onCancel }: IProps) {
 
   return (
     <Flex direction="column" h="100%">
-      <ModalHeader>Send Ether</ModalHeader>
+      <ModalHeader borderBottom="1px solid" borderColor="gray.200">
+        Send Ether
+      </ModalHeader>
       <ModalCloseButton />
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
           <Flex as={Form} direction="column" h="100%">
-            <ModalBody>
+            <ModalBody pt={6}>
               <VStack>
                 <Field name="to" validate={validateTo}>
                   {({ field, meta }: FieldProps) => (
                     <FormControl isInvalid={!!(meta.touched && meta.error)}>
-                      <FormLabel htmlFor="to">Add Recipient</FormLabel>
+                      <FormLabel htmlFor="to" fontSize="sm">
+                        Add Recipient
+                      </FormLabel>
                       <Input
                         {...field}
                         id="to"
                         placeholder="Enter Public Address"
                       />
-                      <FormErrorMessage>{meta.error}</FormErrorMessage>
+                      <FormErrorMessage fontSize="sm">
+                        {meta.error}
+                      </FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
                 <Field name="amount" validate={validateAmount}>
                   {({ field, meta }: FieldProps<string>) => (
                     <FormControl isInvalid={!!(meta.touched && meta.error)}>
-                      <FormLabel htmlFor="amount">Amount To Transfer</FormLabel>
+                      <FormLabel htmlFor="amount" fontSize="sm">
+                        Amount To Transfer
+                      </FormLabel>
                       <NumberInput id="amount" min={0}>
                         <NumberInputField {...field} />
                       </NumberInput>
-                      <FormErrorMessage>{meta.error}</FormErrorMessage>
+                      <FormErrorMessage fontSize="sm">
+                        {meta.error}
+                      </FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
               </VStack>
             </ModalBody>
 
-            <ModalFooter>
-              <Button mr={3} isFullWidth onClick={onCancel}>
+            <ModalFooter borderTop="1px solid" borderColor="gray.200">
+              <Button
+                mr={3}
+                isFullWidth
+                onClick={onCancel}
+                variant="outline"
+                size="lg"
+              >
                 Cancel
               </Button>
               <Button
                 isFullWidth
+                size="lg"
                 colorScheme="blue"
                 type="submit"
                 isLoading={isSubmitting}
