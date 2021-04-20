@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import AppContext from "../context/background/AppContext";
 import { Transaction } from "../services/TransactionsService";
-import { formatDate } from "../utils/date";
 
 function useSendTransactions() {
   const { state, addTransaction, transactionService } = useContext(AppContext);

@@ -1,12 +1,15 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import AppState, { IAppState } from "./context/background/AppState";
-import constants from "./utils/constants";
+import constants, { IConstants } from "./utils/constants";
 import Home from "./pages/home";
 import { Transaction } from "./services/TransactionsService";
 import theme from "./styles/theme";
+import { fromString } from "./utils/date";
 
 // This is just mock data for the demo
-function getInitialTransactions(): Array<Transaction> {
+export function getInitialTransactions(
+  constants: IConstants
+): Array<Transaction> {
   return Object.keys(constants.pastTransactions).map<Transaction>(
     (key: string) => {
       const transaction = constants.pastTransactions[key];
@@ -16,7 +19,7 @@ function getInitialTransactions(): Array<Transaction> {
         to: transaction.recipient,
         from: constants.publicAddress,
         value: parseFloat(transaction.amount),
-        date: new Date(transaction.date),
+        date: fromString(transaction.date),
       };
     }
   );
@@ -25,7 +28,7 @@ function getInitialTransactions(): Array<Transaction> {
 export const initAppState: IAppState = {
   currentAccount: constants.publicAddress,
   accountBalance: constants.accountBalance,
-  transactions: getInitialTransactions(),
+  transactions: getInitialTransactions(constants),
   ethPrice: constants.ethPrice,
 };
 

@@ -4,7 +4,7 @@ interface IConstantsTransaction {
   recipient: string;
 }
 
-interface IConstants {
+export interface IConstants {
   publicAddress: string;
   accountBalance: number;
   ethPrice: number;
