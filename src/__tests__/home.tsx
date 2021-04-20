@@ -12,14 +12,14 @@ const baseAppState: IAppState = {
       to: "test",
       from: "test",
       value: 1,
-      date: "2021-01-01 00:00",
+      date: new Date("2021-01-01 00:00"),
     },
     {
       id: 2,
       to: "test",
       from: "loooongaddressssss",
       value: 2,
-      date: "2021-01-01 00:01",
+      date: new Date("2021-01-01 00:01"),
     },
   ],
 };
@@ -47,7 +47,7 @@ it("can send a new transaction", async () => {
   const toInput = screen.getByLabelText(/add recipient/i);
   await waitFor(() => {
     fireEvent.change(toInput, {
-      target: { value: "new-address" },
+      target: { value: "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
     });
   });
 
